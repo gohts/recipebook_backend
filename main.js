@@ -533,6 +533,7 @@ app.delete('/api/admin/:email', async (req, res) => {
 })
 
 // load static resources
+app.use(express.static(__dirname + '/frontend'))
 
 // start the application
 const p0 = (async () => {
