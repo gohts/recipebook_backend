@@ -36,7 +36,6 @@ const TOKEN_SECRET = process.env.JWT_TOKEN_SECRET
 const MONGO_USER = process.env.MONGO_USER 
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD
 // const MONGO_URL = 'mongodb://localhost:27017';
-// const MONGO_URL = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@recipebook.tm5bu.mongodb.net/?retryWrites=true&w=majority`
 const MONGO_URL = process.env.MONGO_URI
 
 const MONGO_DATABASE = 'snmf2020';
