@@ -142,6 +142,8 @@ app.use(passport.initialize());
 
 // configure routes
 
+
+
 // FACEBOOK authentication routes
 app.get('/auth/facebook', passport.authenticate('facebook', {scope : ['email'] }));
 
@@ -178,7 +180,7 @@ app.get('/auth/facebook/callback',
 // GET /api/spoon
 app.get('/api/spoon', async (req, res) => {
     const query = req.query['q']
-    const resultCount = '2'
+    const resultCount = '3'
     const instructionsRequired = 'true'
     let recipeDetails = []
 
@@ -222,13 +224,10 @@ app.get('/api/spoon', async (req, res) => {
 // GET /api/recipe
 app.get('/api/recipe', async (req, res) => {
 
-    const category = req.query['category']
-
     try{
         const result = await mongoClient.db(MONGO_DATABASE)
             .collection(MONGO_COLLECTION_RECIPES)
             .find({
-                category: category
             })
             .sort({
                 ts: -1
@@ -427,7 +426,6 @@ app.get('/api/ingredient/:useremail', async(req, res) => {
     
 })
 
-
 // routes for user admin
 app.get('/api/admin', async (req, res) => {
 
@@ -467,7 +465,7 @@ app.post('/api/admin', async (req, res) => {
             from: process.env.NODEMAILER_USER, // Sender address
             to: email,         // List of recipients
             subject: `Welcome from My Cookbook's Team`, // Subject line
-            html: `<h1>Hey ${name}, welcome on board!</h1><p>You may search for recipe, add to your meal planner and share recipes with friends!</p>` // Plain text body
+            html: `<h1>Hey ${name}, welcome on board!</h1><h3>Access the page now => <a href="https://gohts-recipebook.herokuapp.com/">Link</a></h3><p>You may search for recipe, add to your meal planner and share recipes with friends!</p>` // Plain text body
         };
 
         transport.sendMail(message, function(err, info) {
